@@ -163,7 +163,8 @@ def generate_interactive(
         unfinished_sequences = unfinished_sequences.mul(
             (min(next_tokens != i for i in eos_token_id)).long())
 
-        output_token_ids = input_ids[0].cpu().tolist()
+        # output_token_ids = input_ids[0].cpu().tolist()
+        output_token_ids = input_ids[0].gpu().tolist()
         output_token_ids = output_token_ids[input_length:]
         for each_eos_token_id in eos_token_id:
             if output_token_ids[-1] == each_eos_token_id:
